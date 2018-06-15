@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fkit.guitar.dao.GuitarDao">
+	<resultMap id="guitarMap" type="org.fkit.guitar.pojo.Guitar">
+	  <id property="id" column="id" />
+	  <result property="price" column="price"/>
+	  <result property="builder" column="builder"/>
+	  <result property="model" column="model"/>
+	  <result property="type" column="type"/>
+	  <result property="backWood" column="back_wood"/>
+	  <result property="topWood" column="top_wood"/>
+	  <result property="numStrings" column="num_strings"/>
+	  <result property="spec.builder" column="builder"/>
+	  <result property="spec.model" column="model"/>
+	  <result property="spec.type" column="type"/>
+	  <result property="spec.backWood" column="back_wood"/>
+	  <result property="spec.topWood" column="top_wood"/>
+	  <result property="spec.numStrings" column="num_strings"/>
+	</resultMap>
+	<!-- 查询数据 -->
+ 	<select id="findAll" resultMap="guitarMap" >
+  		SELECT * FROM guitar
+  	</select>
+  	 
+<!--   	<select id="findAll" resultMap="guitarMap" databaseId="sqlite">
+  		SELECT * FROM guitar
+  	</select> -->
+  	
+  	<!-- 插入数据 -->
+	<insert id="add" parameterType="org.fkit.guitar.pojo.Guitar" >
+  		insert into guitar
+  			(id,price,builder,model,type,back_wood,top_wood,num_strings)
+  		values
+  			(#{id},#{price},#{builder},#{model},#{type},#{backWood},#{topWood},#{numStrings})
+  	</insert> 
+  	
+<!--   	<insert id="add" parameterType="org.fkit.guitar.pojo.Guitar" databaseId="sqlite">
+  		insert into guitar
+  			(id,price,builder,model,type,back_wood,top_wood,num_strings)
+  		values
+  			(#{id},#{price},#{builder},#{model},#{type},#{backWood},#{topWood},#{numStrings})
+  	</insert> -->
+  	
+  	<!-- 删除数据 -->
+  	<delete id="delete" parameterType="String" >
+  		delete from guitar where id=#{id}
+  	</delete>
+  	
+<!--   	<delete id="delete" parameterType="String" databaseId="sqlite">
+  		delete from guitar where id=#{id}
+  	</delete> -->
+  	
+  	<!-- 更新数据 -->
+	<update id="update" parameterType="org.fkit.guitar.pojo.Guitar" >
+  		update guitar
+  		set price=#{price},builder=#{builder},model=#{model},type=#{type},back_wood=#{backWood},top_wood=#{topWood},num_strings=#{numStrings}
+  		where id=#{id}
+  	</update> 
+  	
+<!--   	<update id="update" parameterType="org.fkit.guitar.pojo.Guitar" databaseId="sqlite">
+  		update guitar
+  		set price=#{price},builder=#{builder},model=#{model},type=#{type},back_wood=#{backWood},top_wood=#{topWood},num_strings=#{numStrings}
+  		where id=#{id}
+  	</update> -->
+  	<!-- 查询总数 -->
+  	<select id="count" resultType="java.lang.Integer">
+        select count(*) from guitar
+    </select> 
+<!--     <select id="count" resultType="java.lang.Integer" databaseId="sqlite">
+        select count(*) from guitar
+    </select> -->
+</mapper>

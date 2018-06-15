@@ -1,0 +1,1 @@
+insert into guitar values (122,100,'FENDER','M','ACOUSTIC','INDIAN_ROSEWOOD','MAHOGANY','6');
